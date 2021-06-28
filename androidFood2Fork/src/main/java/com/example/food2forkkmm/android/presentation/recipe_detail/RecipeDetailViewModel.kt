@@ -5,7 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.food2forkkmm.datasource.network.RecipeService
 import com.example.food2forkkmm.domain.model.Recipe
 import com.example.food2forkkmm.domain.util.DatetimeUtil
 import com.example.food2forkkmm.interactors.recipe_detail.GetRecipe
