@@ -8,7 +8,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.food2forkkmm.datasource.network.RecipeService
 import com.example.food2forkkmm.domain.model.Recipe
 import com.example.food2forkkmm.domain.util.DatetimeUtil
+import com.example.food2forkkmm.interactors.recipe_detail.GetRecipe
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,7 +21,7 @@ class RecipeDetailViewModel
 @Inject
 constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val recipeService: RecipeService,
+    private val getRecipe: GetRecipe,
 ): ViewModel()
 {
 
@@ -27,14 +30,28 @@ constructor(
     init {
         savedStateHandle.get<Int>("recipeId")?.let { recipeId ->
             viewModelScope.launch {
-                recipe.value = recipeService.get(recipeId)
-                println("KtorTest: ${recipe.value!!.title}")
-                println("KtorTest: ${recipe.value!!.ingredients}")
-                println("KtorTest: ${DatetimeUtil().humanizeDatetime(recipe.value!!.dateUpdated)}")
+                getRecipe(recipeId)
             }
 
         }
 
+    }
+
+    private fun getRecipe(recipeId: Int){
+        getRecipe.execute(recipeId).onEach { dataState ->
+
+            println("RecipeDetailV: ${dataState.isLoading}")
+
+            dataState.data?.let {
+                println("RecipeDetailV: recipes: ${it}")
+                this.recipe.value = it
+            }
+
+            dataState.message?.let {
+                println("RecipeDetailV: error: ${it}")
+            }
+
+        }.launchIn(viewModelScope)
     }
 
 }
