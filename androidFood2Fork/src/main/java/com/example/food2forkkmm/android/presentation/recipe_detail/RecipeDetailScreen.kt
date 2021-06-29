@@ -5,6 +5,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
+import com.example.food2forkkmm.android.presentation.components.RecipeImage
 import com.example.food2forkkmm.android.presentation.navigation.Screen
 import com.example.food2forkkmm.android.presentation.theme.AppTheme
 import com.example.food2forkkmm.domain.model.Recipe
@@ -20,9 +21,7 @@ fun RecipeDetailScreen(
             Text(text = "Unable to get details!!")
         }
         else{
-            Column {
-                Text(text = "RecipeDetailScreen: ${recipe.title}")
-            }
+            RecipeImage(url = recipe.featuredImage, contentDescription = recipe.title)
         }
     }
 }
