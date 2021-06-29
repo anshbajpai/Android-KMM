@@ -22,7 +22,7 @@ fun RecipeImageList(
         Image(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 5.dp,top = 0.dp, end = 5.dp,bottom = 0.dp)
+                .padding(start = 4.dp,top = 0.dp, end = 4.dp,bottom = 0.dp)
                 .height(RECIPE_IMAGE_HEIGHT.dp),
 
             painter = painter,
