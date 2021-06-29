@@ -22,6 +22,8 @@ class SearchRecipes(
                 page = page,
                 query = query,
             )
+
+            kotlinx.coroutines.delay(500)
             //insert into cache
             recipeCache.insert(recipes)
 
