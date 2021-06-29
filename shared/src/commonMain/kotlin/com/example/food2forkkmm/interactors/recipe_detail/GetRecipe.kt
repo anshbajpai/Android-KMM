@@ -1,5 +1,6 @@
 package com.example.food2forkkmm.interactors.recipe_detail
 
+import com.example.food2forkkmm.datasource.cache.RecipeCache
 import com.example.food2forkkmm.datasource.network.RecipeService
 import com.example.food2forkkmm.domain.model.Recipe
 import com.example.food2forkkmm.domain.util.DataState
@@ -7,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class GetRecipe(
-   private val recipeService: RecipeService
+   private val recipeCache: RecipeCache,
 ) {
 
     fun execute(
@@ -16,7 +17,7 @@ class GetRecipe(
         emit(DataState.loading())
 
         try{
-            val recipe = recipeService.get(recipeId)
+            val recipe = recipeCache.get(recipeId)
 
             emit(DataState.data(message = null,data = recipe))
         } catch (e:Exception){
