@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.food2forkkmm.domain.model.Recipe
 import com.example.food2forkkmm.interactors.recipe_list.SearchRecipes
+import com.example.food2forkkmm.presentation.recipe_list.RecipeListEvents
 import com.example.food2forkkmm.presentation.recipe_list.RecipeListState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
@@ -25,8 +26,30 @@ constructor(
     val state: MutableState<RecipeListState> = mutableStateOf(RecipeListState())
 
     init {
+        onTriggerEvent(RecipeListEvents.LoadRecipes)
+    }
+
+
+    fun onTriggerEvent(event: RecipeListEvents){
+        when(event){
+            RecipeListEvents.LoadRecipes -> {
+                loadRecipes()
+            }
+            RecipeListEvents.NextPage -> {
+                nextPage()
+            }
+            else -> {
+                handleError("Invalid Event")
+            }
+        }
+    }
+
+    private fun nextPage(){
+        state.value = state.value.copy(page = state.value.page + 1)
         loadRecipes()
     }
+
+
 
     private fun loadRecipes(){
         searchRecipes.execute(
@@ -40,7 +63,7 @@ constructor(
             }
 
             dataState.message?.let {
-                println("RecipeListV: error: ${it}")
+                handleError("Error")
             }
         }.launchIn(viewModelScope)
     }
@@ -49,6 +72,10 @@ constructor(
         val curr = ArrayList(state.value.recipes)
         curr.addAll(recipes)
         state.value = state.value.copy(recipes = curr)
+
+    }
+
+    private fun handleError(errorMessage: String){
 
     }
 }
