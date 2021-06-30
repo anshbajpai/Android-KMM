@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -15,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.example.food2forkkmm.android.presentation.components.GradientDemo
 import com.example.food2forkkmm.android.presentation.recipe_list.components.RecipeCard
 import com.example.food2forkkmm.android.presentation.recipe_list.components.RecipeList
+import com.example.food2forkkmm.android.presentation.recipe_list.components.SearchAppBar
 import com.example.food2forkkmm.android.presentation.theme.AppTheme
 import com.example.food2forkkmm.presentation.recipe_list.RecipeListEvents
 import com.example.food2forkkmm.presentation.recipe_list.RecipeListState
@@ -29,13 +31,27 @@ fun RecipeListScreen(
 ){
     AppTheme(displayProgressBar = state.isLoading) {
 
-      RecipeList(
-          loading = state.isLoading,
-          recipes = state.recipes,
-          page = state.page,
-          { onTriggerEvent(RecipeListEvents.NextPage)},
-          onClickRecipeListItem = onClickRecipeListItem,
-      )
+    Scaffold(
+        topBar = {
+            SearchAppBar(
+                query = state.query,
+                onQueryChanged = {
+                    onTriggerEvent(RecipeListEvents.OnUpdateQuery(it))
+                },
+                onExecuteSearch = {
+                    onTriggerEvent(RecipeListEvents.NewSearch)
+                                  },
+                )
+        }
+    ) {
+        RecipeList(
+            loading = state.isLoading,
+            recipes = state.recipes,
+            page = state.page,
+            { onTriggerEvent(RecipeListEvents.NextPage)},
+            onClickRecipeListItem = onClickRecipeListItem,
+        )
+    }
 
 
     }
