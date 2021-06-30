@@ -10,4 +10,6 @@ sealed class RecipeListEvents{
 
     data class OnUpdateQuery(val query: String): RecipeListEvents()
 
+    data class OnSelectCategory(val category: FoodCategory): RecipeListEvents()
+
 }

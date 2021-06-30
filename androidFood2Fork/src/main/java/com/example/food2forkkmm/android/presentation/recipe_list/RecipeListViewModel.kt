@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.food2forkkmm.domain.model.Recipe
 import com.example.food2forkkmm.interactors.recipe_list.SearchRecipes
+import com.example.food2forkkmm.presentation.recipe_list.FoodCategory
 import com.example.food2forkkmm.presentation.recipe_list.RecipeListEvents
 import com.example.food2forkkmm.presentation.recipe_list.RecipeListState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -44,10 +45,18 @@ constructor(
             is RecipeListEvents.OnUpdateQuery -> {
                 state.value = state.value.copy(query = event.query)
             }
+            is RecipeListEvents.OnSelectCategory -> {
+                onSelectCategory(event.category)
+            }
             else -> {
                 handleError("Invalid Event")
             }
         }
+    }
+
+    private fun onSelectCategory(category: FoodCategory){
+        state.value = state.value.copy(selectedCategory = category, query = category.value)
+        newSearch()
     }
 
     private fun newSearch(){

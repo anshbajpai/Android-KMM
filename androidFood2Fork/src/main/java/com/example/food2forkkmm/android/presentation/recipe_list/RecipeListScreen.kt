@@ -41,6 +41,10 @@ fun RecipeListScreen(
             SearchAppBar(
                 query = state.query,
                 categories = foodCategories,
+                onSelectedCategoryChanged = {
+                       onTriggerEvent(RecipeListEvents.OnSelectCategory(it))
+                },
+                selectedCategory = state.selectedCategory,
                 onQueryChanged = {
                     onTriggerEvent(RecipeListEvents.OnUpdateQuery(it))
                 },
