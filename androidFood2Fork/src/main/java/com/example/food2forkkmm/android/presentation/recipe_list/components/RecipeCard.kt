@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.food2forkkmm.android.presentation.components.RecipeImageList
 import com.example.food2forkkmm.android.presentation.components.RecipeImage
 import com.example.food2forkkmm.domain.model.Recipe
 
