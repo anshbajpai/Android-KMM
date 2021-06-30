@@ -10,6 +10,7 @@ import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -18,6 +19,7 @@ import com.example.food2forkkmm.android.presentation.recipe_list.components.Reci
 import com.example.food2forkkmm.android.presentation.recipe_list.components.RecipeList
 import com.example.food2forkkmm.android.presentation.recipe_list.components.SearchAppBar
 import com.example.food2forkkmm.android.presentation.theme.AppTheme
+import com.example.food2forkkmm.presentation.recipe_list.FoodCategoryUtil
 import com.example.food2forkkmm.presentation.recipe_list.RecipeListEvents
 import com.example.food2forkkmm.presentation.recipe_list.RecipeListState
 
@@ -31,10 +33,14 @@ fun RecipeListScreen(
 ){
     AppTheme(displayProgressBar = state.isLoading) {
 
+    val foodCategories = remember {
+        FoodCategoryUtil().getAllFoodCategories()
+    }
     Scaffold(
         topBar = {
             SearchAppBar(
                 query = state.query,
+                categories = foodCategories,
                 onQueryChanged = {
                     onTriggerEvent(RecipeListEvents.OnUpdateQuery(it))
                 },
