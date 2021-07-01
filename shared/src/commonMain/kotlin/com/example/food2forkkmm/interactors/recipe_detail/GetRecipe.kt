@@ -17,6 +17,8 @@ class GetRecipe(
         emit(DataState.loading())
 
         try{
+
+            kotlinx.coroutines.delay(2000)
             val recipe = recipeCache.get(recipeId)
 
             emit(DataState.data(message = null,data = recipe))

@@ -1,6 +1,7 @@
 package com.example.food2forkkmm.presentation.recipe_list
 
 import com.example.food2forkkmm.domain.model.Recipe
+import com.example.food2forkkmm.domain.util.Queue
 
 data class RecipeListState(
     val isLoading:Boolean =false,
@@ -8,4 +9,5 @@ data class RecipeListState(
     val query: String = "",
     val selectedCategory: FoodCategory? = null,
     val recipes:List<Recipe> = listOf(),
+    val queue: Queue<String> = Queue(mutableListOf())
 )

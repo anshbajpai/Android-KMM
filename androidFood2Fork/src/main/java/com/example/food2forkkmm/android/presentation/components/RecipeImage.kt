@@ -18,7 +18,7 @@ fun RecipeImage(
     url: String,
     contentDescription: String,
 ){
-   val painter = rememberCoilPainter(request = url)
+   val painter = rememberCoilPainter(request = url, fadeIn = true)
    Box{
        Image(
            modifier = Modifier
