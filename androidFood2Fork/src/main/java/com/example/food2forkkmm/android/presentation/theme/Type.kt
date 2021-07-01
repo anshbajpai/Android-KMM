@@ -1,5 +1,6 @@
 package com.example.food2forkkmm.android.presentation.theme
 
+import androidx.compose.material.Text
 import androidx.compose.material.Typography
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
@@ -14,7 +15,8 @@ private val QuickSand = FontFamily(
     Font(R.font.quicksand_light, FontWeight.W300),
     Font(R.font.quicksand_regular, FontWeight.W400),
     Font(R.font.quicksand_medium, FontWeight.W500),
-    Font(R.font.quicksand_bold, FontWeight.W600)
+    Font(R.font.quicksand_bold, FontWeight.W600),
+    Font(R.font.courgette_regular, FontWeight.W700)
 )
 
 val QuickSandTypography = Typography(
@@ -30,7 +32,7 @@ val QuickSandTypography = Typography(
     ),
     h3 = TextStyle(
         fontFamily = QuickSand,
-        fontWeight = FontWeight.W500,
+        fontWeight = FontWeight.W700,
         fontSize = 20.sp,
     ),
     h4 = TextStyle(
@@ -82,5 +84,5 @@ val QuickSandTypography = Typography(
         fontFamily = QuickSand,
         fontWeight = FontWeight.W400,
         fontSize = 12.sp
-    )
+    ),
 )

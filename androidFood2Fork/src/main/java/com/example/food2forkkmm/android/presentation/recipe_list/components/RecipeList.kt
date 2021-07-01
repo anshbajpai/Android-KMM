@@ -5,6 +5,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import com.example.food2forkkmm.android.presentation.components.RECIPE_IMAGE_HEIGHT
+import com.example.food2forkkmm.android.presentation.recipe_list.testing_components.NewRecipeCard
 import com.example.food2forkkmm.datasource.network.RecipeServiceImpl.Companion.RECIPE_PAGINATION_PAGE_SIZE
 import com.example.food2forkkmm.domain.model.Recipe
 
@@ -30,7 +31,7 @@ fun RecipeList(
                 if((index + 1) >= (page * RECIPE_PAGINATION_PAGE_SIZE) && !loading){
                     onTriggerNextPage()
                 }
-                RecipeCard(recipe = recipe,
+                NewRecipeCard(recipe = recipe,
                     onClick = {
                         onClickRecipeListItem(recipe.id)
                     }

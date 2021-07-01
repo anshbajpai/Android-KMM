@@ -1,10 +1,7 @@
-package com.example.food2forkkmm.android.presentation.components
+package com.example.food2forkkmm.android.presentation.recipe_list.testing_components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -14,23 +11,23 @@ import com.google.accompanist.imageloading.ImageLoadState
 
 const val RECIPE_IMAGE_HEIGHT = 210
 @Composable
-fun RecipeImage(
+fun NewRecipeImage(
     url: String,
     contentDescription: String,
 ){
-   val painter = rememberCoilPainter(request = url, fadeIn = true)
-   Box{
-       Image(
-           modifier = Modifier
-               .fillMaxWidth()
-               .height(RECIPE_IMAGE_HEIGHT.dp),
+    val painter = rememberCoilPainter(request = url, fadeIn = true)
+    Box{
+        Image(
+            modifier = Modifier
+                .width(200.dp)
+                .height(RECIPE_IMAGE_HEIGHT.dp),
 
-           painter = painter,
-           contentDescription = contentDescription,
-           contentScale = ContentScale.Crop
+            painter = painter,
+            contentDescription = contentDescription,
+            contentScale = ContentScale.Crop
 
-       )
-   }
+        )
+    }
 
     when(painter.loadState){
         is ImageLoadState.Error -> {
@@ -49,4 +46,4 @@ fun RecipeImage(
         }
     }
 
-    }
+}

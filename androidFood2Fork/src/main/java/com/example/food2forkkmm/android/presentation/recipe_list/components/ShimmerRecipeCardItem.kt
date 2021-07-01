@@ -26,30 +26,46 @@ fun ShimmerRecipeCardItem(
         start = Offset(xShimmer - gradientWidth, yShimmer - gradientWidth),
         end = Offset(xShimmer, yShimmer)
     )
-    Column(modifier = Modifier.padding(padding)) {
+    Row(modifier = Modifier.padding(padding)) {
         Surface(
             shape = MaterialTheme.shapes.small,
         ) {
             Spacer(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .width(200.dp)
                     .height(cardHeight)
                     .background(brush = brush)
             )
         }
-        Spacer(modifier = Modifier.height(8.dp))
-        Surface(
-            shape = MaterialTheme.shapes.small,
-            modifier = Modifier
-                .padding(vertical = 8.dp)
-        ) {
-            Spacer(
+        Spacer(modifier = Modifier.height(cardHeight).width(8.dp) )
+        Column() {
+            Surface(
+                shape = MaterialTheme.shapes.small,
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .height(cardHeight / 10)
-                    .background(brush = brush)
-            )
+                    .padding(vertical = 8.dp)
+            ) {
+                Spacer(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(cardHeight / 10)
+                        .background(brush = brush)
+                )
+            }
+
+            Surface(
+                shape = MaterialTheme.shapes.small,
+                modifier = Modifier
+                    .padding(vertical = 8.dp)
+            ) {
+                Spacer(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(cardHeight / 10)
+                        .background(brush = brush)
+                )
+            }
         }
+
     }
 
 }
