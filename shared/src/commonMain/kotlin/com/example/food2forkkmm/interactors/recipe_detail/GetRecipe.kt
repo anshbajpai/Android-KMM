@@ -3,6 +3,7 @@ package com.example.food2forkkmm.interactors.recipe_detail
 import com.example.food2forkkmm.datasource.cache.RecipeCache
 import com.example.food2forkkmm.datasource.network.RecipeService
 import com.example.food2forkkmm.domain.model.GenericMessageInfo
+import com.example.food2forkkmm.domain.model.PositiveAction
 import com.example.food2forkkmm.domain.model.Recipe
 import com.example.food2forkkmm.domain.model.UIComponentType
 import com.example.food2forkkmm.domain.util.DataState

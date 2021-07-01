@@ -11,4 +11,13 @@ data class RecipeListState(
     val selectedCategory: FoodCategory? = null,
     val recipes:List<Recipe> = listOf(),
     val queue: Queue<GenericMessageInfo> = Queue(mutableListOf())
-)
+){
+    constructor(): this(
+        isLoading = false,
+        page = 1,
+        query = "",
+        recipes = listOf(),
+        selectedCategory = null,
+        queue = Queue(mutableListOf())
+    )
+}

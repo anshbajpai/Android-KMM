@@ -4,22 +4,27 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.AlertDialog
-import androidx.compose.material.Button
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.food2forkkmm.domain.model.NegativeAction
+import com.example.food2forkkmm.domain.model.PositiveAction
 
 @Composable
 fun GenericDialog(
+    modifier: Modifier = Modifier,
+    onDismiss: (() -> Unit)?,
     title: String,
     description: String? = null,
+    positiveAction: PositiveAction?,
+    negativeAction: NegativeAction?,
     onRemoveHeadFromQueue: () -> Unit,
 ){
     AlertDialog(
+        modifier = modifier,
         onDismissRequest = {
+            onDismiss?.invoke()
             onRemoveHeadFromQueue()
         },
         title = {
@@ -43,24 +48,36 @@ fun GenericDialog(
                     .padding(8.dp),
                 horizontalArrangement = Arrangement.End
             ) {
-                Button(
-                    onClick = { onRemoveHeadFromQueue() },
-                    modifier = Modifier.padding(end = 8.dp)
-                ) {
-                    Text(
-                        text = "Cancel",
-                        style = MaterialTheme.typography.button
-                    )
+                if(negativeAction != null){
+                    Button(
+                        onClick = {
+                            negativeAction.onNegativeAction()
+                            onRemoveHeadFromQueue()
+                        },
+                        colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.onError),
+                        modifier = Modifier.padding(end = 8.dp)
+                    ) {
+                        Text(
+                            text = negativeAction.negativeBtnTxt,
+                            style = MaterialTheme.typography.button
+                        )
+                    }
                 }
-                Button(
-                    onClick = { onRemoveHeadFromQueue() },
-                    modifier = Modifier.padding(end = 8.dp)
-                ) {
-                    Text(
-                        text = "OK",
-                        style = MaterialTheme.typography.button
-                    )
+                if(positiveAction !=null){
+                    Button(
+                        onClick = {
+                            positiveAction.onPositiveAction()
+                            onRemoveHeadFromQueue()
+                                  },
+                        modifier = Modifier.padding(end = 8.dp)
+                    ) {
+                        Text(
+                            text = positiveAction.positiveBtnTxt,
+                            style = MaterialTheme.typography.button
+                        )
+                    }
                 }
+
             }
         }
 
