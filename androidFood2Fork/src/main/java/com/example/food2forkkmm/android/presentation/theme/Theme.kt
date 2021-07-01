@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.example.food2forkkmm.android.presentation.components.ProcessDialogQueue
 import com.example.food2forkkmm.android.presentation.recipe_list.components.CircularIndeterminateProgressBar
+import com.example.food2forkkmm.domain.model.GenericMessageInfo
 import com.example.food2forkkmm.domain.util.Queue
 
 private val LightThemeColors = lightColors(
@@ -32,7 +33,7 @@ private val LightThemeColors = lightColors(
 @Composable
 fun AppTheme(
     displayProgressBar: Boolean,
-    dialogQueue: Queue<String> = Queue(mutableListOf()),
+    dialogQueue: Queue<GenericMessageInfo> = Queue(mutableListOf()),
     content: @Composable () -> Unit,
 ) {
     MaterialTheme(

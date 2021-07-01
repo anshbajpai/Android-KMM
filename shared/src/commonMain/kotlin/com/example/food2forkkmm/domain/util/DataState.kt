@@ -1,14 +1,16 @@
 package com.example.food2forkkmm.domain.util
 
+import com.example.food2forkkmm.domain.model.GenericMessageInfo
+
 
 data class DataState<T>(
-    val message: String? = null,
+    val message: GenericMessageInfo.Builder? = null,
     val data: T? = null,
     val isLoading: Boolean = false,
 ) {
     companion object{
         fun <T> error(
-            message: String,
+            message: GenericMessageInfo.Builder,
         ): DataState<T> {
             return DataState(
                 message = message,
@@ -17,7 +19,7 @@ data class DataState<T>(
         }
 
         fun <T> data(
-            message: String? = null,
+            message: GenericMessageInfo.Builder? = null,
             data: T? = null,
         ): DataState<T> {
             return DataState(

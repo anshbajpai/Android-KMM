@@ -5,7 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.food2forkkmm.domain.model.GenericMessageInfo
 import com.example.food2forkkmm.domain.model.Recipe
+import com.example.food2forkkmm.domain.model.UIComponentType
 import com.example.food2forkkmm.domain.util.DatetimeUtil
 import com.example.food2forkkmm.interactors.recipe_detail.GetRecipe
 import com.example.food2forkkmm.presentation.recipe_detail.RecipeDetailEvents
@@ -14,6 +16,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 @ExperimentalStdlibApi
@@ -44,7 +47,13 @@ constructor(
                 getRecipe(event.recipeId)
             }
             else -> {
-                handleError("Invalid Event")
+                appendToMessageQueue(
+                    GenericMessageInfo.Builder()
+                        .id(UUID.randomUUID().toString())
+                        .title("Error")
+                        .uiComponentType(UIComponentType.Dialog)
+                        .description("Invalid Event")
+                )
             }
         }
     }
@@ -59,15 +68,15 @@ constructor(
             }
 
             dataState.message?.let {
-                handleError("Invalid")
+                appendToMessageQueue(it)
             }
 
         }.launchIn(viewModelScope)
     }
 
-    private fun handleError(errorMessage: String){
+    private fun appendToMessageQueue(messageInfo: GenericMessageInfo.Builder){
         val queue = state.value.queue
-        queue.add(errorMessage)
+        queue.add(messageInfo.build())
         state.value = state.value.copy(queue = queue)
     }
 
