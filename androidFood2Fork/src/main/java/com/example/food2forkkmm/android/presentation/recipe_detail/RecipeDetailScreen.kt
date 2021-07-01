@@ -28,7 +28,7 @@ fun RecipeDetailScreen(
    state: RecipeDetailState,
    onTriggerEvent: (RecipeDetailEvents) -> Unit,
 ){
-    AppTheme(displayProgressBar = state.isLoading) {
+    AppTheme(displayProgressBar = state.isLoading, dialogQueue = state.queue) {
         if(state.recipe == null && state.isLoading){
             LoadingRecipeShimmer(imageHeight = RECIPE_IMAGE_HEIGHT.dp)
         }

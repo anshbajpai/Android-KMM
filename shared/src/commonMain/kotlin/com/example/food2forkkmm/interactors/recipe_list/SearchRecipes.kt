@@ -24,6 +24,11 @@ class SearchRecipes(
             )
 
             kotlinx.coroutines.delay(500)
+
+            if(query == "error"){
+                throw Exception("Forcing an error... Search FAILED")
+            }
+
             //insert into cache
             recipeCache.insert(recipes)
 

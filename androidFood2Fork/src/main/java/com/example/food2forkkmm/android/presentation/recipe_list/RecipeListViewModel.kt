@@ -83,7 +83,7 @@ constructor(
             }
 
             dataState.message?.let {
-                handleError("Error")
+                handleError(it)
             }
         }.launchIn(viewModelScope)
     }
