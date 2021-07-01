@@ -66,7 +66,7 @@ constructor(
     }
 
     private fun getRecipe(recipeId: Int){
-        getRecipe.execute(recipeId).onEach { dataState ->
+        getRecipe.execute(recipeId).collectCommon(viewModelScope) { dataState ->
 
             state.value = state.value.copy(isLoading = dataState.isLoading)
 
@@ -78,7 +78,7 @@ constructor(
                 appendToMessageQueue(it)
             }
 
-        }.launchIn(viewModelScope)
+        }
     }
 
     private fun appendToMessageQueue(messageInfo: GenericMessageInfo.Builder){

@@ -6,7 +6,9 @@ import com.example.food2forkkmm.domain.model.GenericMessageInfo
 import com.example.food2forkkmm.domain.model.PositiveAction
 import com.example.food2forkkmm.domain.model.Recipe
 import com.example.food2forkkmm.domain.model.UIComponentType
+import com.example.food2forkkmm.domain.util.CommonFlow
 import com.example.food2forkkmm.domain.util.DataState
+import com.example.food2forkkmm.domain.util.asCommonFlow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -16,7 +18,7 @@ class GetRecipe(
 
     fun execute(
         recipeId: Int,
-    ): Flow<DataState<Recipe>> = flow {
+    ): CommonFlow<DataState<Recipe>> = flow {
         emit(DataState.loading())
 
         try{
@@ -35,5 +37,5 @@ class GetRecipe(
 
             ))
         }
-    }
+    }.asCommonFlow()
 }

@@ -24,7 +24,7 @@ class RecipeListViewModel: ObservableObject {
     ){
         self.searchRecipes = searchRecipes
         self.foodCategoryUtil = foodCategoryUtil
-        // Perform a search
+        onTriggerEvent(stateEvent: RecipeListEvents.LoadRecipes())
     }
     
     func updateState(
@@ -47,7 +47,7 @@ class RecipeListViewModel: ObservableObject {
     func onTriggerEvent(stateEvent: RecipeListEvents){
         switch stateEvent{
         case is RecipeListEvents.LoadRecipes:
-            doNothing()
+            loadRecipes()
         case is RecipeListEvents.NewSearch:
             doNothing()
         case is RecipeListEvents.NextPage:
@@ -62,6 +62,51 @@ class RecipeListViewModel: ObservableObject {
             doNothing()
 }
     }
+    
+    private func loadRecipes(){
+        let currentState = (self.state.copy() as! RecipeListState)
+        do {
+            try searchRecipes.execute(
+                page: Int32(currentState.page),
+                query: currentState.query
+            ).collectCommon(
+            coroutineScope: nil,
+                callback: { dataState in
+                    if dataState != nil{
+                        let data = dataState?.data
+                        let message = dataState?.message
+                        let loading = dataState?.isLoading
+                        
+                        self.updateState(
+                            isLoading: loading
+                        )
+                        
+                        if(data != nil){
+                            self.appendRecipes(recipes: data as! [Recipe])
+                        }
+                        if(message != nil){
+                            self.handleMessageByUIComponentType( message!.build())
+                        }
+                    }
+                }
+            )
+        }catch{
+            
+        }
+    }
+    
+    private func appendRecipes(recipes: [Recipe]){
+        for recipe in recipes {
+            print("\(recipe.title)")
+        }
+        // TODO("append recipes to state")
+    }
+    
+    private func handleMessageByUIComponentType(_ message: GenericMessageInfo){
+        // TODO("append to queue or 'None'")
+    }
+    
+    
     
     func doNothing(){
         
