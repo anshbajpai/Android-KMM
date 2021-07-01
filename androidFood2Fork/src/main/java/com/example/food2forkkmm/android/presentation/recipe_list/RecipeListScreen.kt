@@ -31,7 +31,13 @@ fun RecipeListScreen(
     onTriggerEvent: (RecipeListEvents) -> Unit,
     onClickRecipeListItem: (Int) -> Unit,
 ){
-    AppTheme(displayProgressBar = state.isLoading, dialogQueue = state.queue) {
+    AppTheme(
+        displayProgressBar = state.isLoading,
+        dialogQueue = state.queue,
+        onRemoveHeadMessageFromQueue = {
+           onTriggerEvent(RecipeListEvents.OnRemoveHeadMessageFromQueue)
+       }
+    ) {
 
     val foodCategories = remember {
         FoodCategoryUtil().getAllFoodCategories()

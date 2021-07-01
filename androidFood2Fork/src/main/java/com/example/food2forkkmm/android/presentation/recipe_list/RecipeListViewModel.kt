@@ -8,6 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.food2forkkmm.domain.model.GenericMessageInfo
 import com.example.food2forkkmm.domain.model.Recipe
 import com.example.food2forkkmm.domain.model.UIComponentType
+import com.example.food2forkkmm.domain.util.GenericMessageInfoQueueUtil
+import com.example.food2forkkmm.domain.util.Queue
 import com.example.food2forkkmm.interactors.recipe_list.SearchRecipes
 import com.example.food2forkkmm.presentation.recipe_list.FoodCategory
 import com.example.food2forkkmm.presentation.recipe_list.RecipeListEvents
@@ -51,6 +53,9 @@ constructor(
             }
             is RecipeListEvents.OnSelectCategory -> {
                 onSelectCategory(event.category)
+            }
+            is RecipeListEvents.OnRemoveHeadMessageFromQueue -> {
+                removeHeadMessage()
             }
             else -> {
                 appendToMessageQueue(
@@ -106,8 +111,25 @@ constructor(
     }
 
     private fun appendToMessageQueue(messageInfo: GenericMessageInfo.Builder){
-          val queue = state.value.queue
-          queue.add(messageInfo.build())
-          state.value = state.value.copy(queue = queue)
+          if(!GenericMessageInfoQueueUtil().doesMessageAlreadyExistInQueue(
+                  queue = state.value.queue, messageInfo = messageInfo.build()
+          )){
+              val queue = state.value.queue
+              queue.add(messageInfo.build())
+              state.value = state.value.copy(queue = queue)
+          }
+
     }
+
+    private fun removeHeadMessage(){
+        try {
+            val queue = state.value.queue
+            queue.remove()
+            state.value = state.value.copy(queue = Queue(mutableListOf()))
+            state.value = state.value.copy(queue = queue)
+        }catch (e: Exception){
+
+        }
+    }
+
 }

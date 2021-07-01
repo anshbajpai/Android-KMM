@@ -9,9 +9,12 @@ import com.example.food2forkkmm.domain.model.GenericMessageInfo
 import com.example.food2forkkmm.domain.model.Recipe
 import com.example.food2forkkmm.domain.model.UIComponentType
 import com.example.food2forkkmm.domain.util.DatetimeUtil
+import com.example.food2forkkmm.domain.util.GenericMessageInfoQueueUtil
+import com.example.food2forkkmm.domain.util.Queue
 import com.example.food2forkkmm.interactors.recipe_detail.GetRecipe
 import com.example.food2forkkmm.presentation.recipe_detail.RecipeDetailEvents
 import com.example.food2forkkmm.presentation.recipe_detail.RecipeDetailState
+import com.example.food2forkkmm.presentation.recipe_list.RecipeListEvents
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -46,6 +49,9 @@ constructor(
             is RecipeDetailEvents.GetRecipe -> {
                 getRecipe(event.recipeId)
             }
+            is RecipeDetailEvents.OnRemoveHeadMessageFromQueue -> {
+                removeHeadMessage()
+            }
             else -> {
                 appendToMessageQueue(
                     GenericMessageInfo.Builder()
@@ -75,9 +81,25 @@ constructor(
     }
 
     private fun appendToMessageQueue(messageInfo: GenericMessageInfo.Builder){
-        val queue = state.value.queue
-        queue.add(messageInfo.build())
-        state.value = state.value.copy(queue = queue)
+        if(!GenericMessageInfoQueueUtil().doesMessageAlreadyExistInQueue(
+                queue = state.value.queue, messageInfo = messageInfo.build()
+            )){
+            val queue = state.value.queue
+            queue.add(messageInfo.build())
+            state.value = state.value.copy(queue = queue)
+        }
+
+    }
+
+    private fun removeHeadMessage(){
+        try {
+            val queue = state.value.queue
+            queue.remove()
+            state.value = state.value.copy(queue = Queue(mutableListOf()))
+            state.value = state.value.copy(queue = queue)
+        }catch (e: Exception){
+
+        }
     }
 
 }

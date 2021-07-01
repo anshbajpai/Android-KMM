@@ -19,6 +19,7 @@ import com.example.food2forkkmm.android.presentation.theme.AppTheme
 import com.example.food2forkkmm.domain.model.Recipe
 import com.example.food2forkkmm.presentation.recipe_detail.RecipeDetailEvents
 import com.example.food2forkkmm.presentation.recipe_detail.RecipeDetailState
+import com.example.food2forkkmm.presentation.recipe_list.RecipeListEvents
 
 @ExperimentalStdlibApi
 @ExperimentalMaterialApi
@@ -28,7 +29,13 @@ fun RecipeDetailScreen(
    state: RecipeDetailState,
    onTriggerEvent: (RecipeDetailEvents) -> Unit,
 ){
-    AppTheme(displayProgressBar = state.isLoading, dialogQueue = state.queue) {
+    AppTheme(
+        displayProgressBar = state.isLoading,
+        dialogQueue = state.queue,
+        onRemoveHeadMessageFromQueue = {
+            onTriggerEvent(RecipeDetailEvents.OnRemoveHeadMessageFromQueue)
+        },
+    ) {
         if(state.recipe == null && state.isLoading){
             LoadingRecipeShimmer(imageHeight = RECIPE_IMAGE_HEIGHT.dp)
         }

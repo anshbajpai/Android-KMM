@@ -34,6 +34,7 @@ private val LightThemeColors = lightColors(
 fun AppTheme(
     displayProgressBar: Boolean,
     dialogQueue: Queue<GenericMessageInfo> = Queue(mutableListOf()),
+    onRemoveHeadMessageFromQueue: () -> Unit,
     content: @Composable () -> Unit,
 ) {
     MaterialTheme(
@@ -46,7 +47,7 @@ fun AppTheme(
                 .fillMaxSize()
                 .background(color = Grey1)
         ){
-            ProcessDialogQueue(dialogQueue = dialogQueue)
+            ProcessDialogQueue(dialogQueue = dialogQueue, onRemoveHeadMessageFromQueue = onRemoveHeadMessageFromQueue)
             content()
             CircularIndeterminateProgressBar(isDisplayed = displayProgressBar, verticalBias = 0.3f)
         }

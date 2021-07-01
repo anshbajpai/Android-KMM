@@ -16,9 +16,12 @@ import androidx.compose.ui.unit.dp
 fun GenericDialog(
     title: String,
     description: String? = null,
+    onRemoveHeadFromQueue: () -> Unit,
 ){
     AlertDialog(
-        onDismissRequest = { /*TODO*/ },
+        onDismissRequest = {
+            onRemoveHeadFromQueue()
+        },
         title = {
             Text(
                 text = title,
@@ -41,7 +44,7 @@ fun GenericDialog(
                 horizontalArrangement = Arrangement.End
             ) {
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = { onRemoveHeadFromQueue() },
                     modifier = Modifier.padding(end = 8.dp)
                 ) {
                     Text(
@@ -50,7 +53,7 @@ fun GenericDialog(
                     )
                 }
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = { onRemoveHeadFromQueue() },
                     modifier = Modifier.padding(end = 8.dp)
                 ) {
                     Text(
