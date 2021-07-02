@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.food2forkkmm.android.presentation.components.RECIPE_IMAGE_HEIGHT
 import com.example.food2forkkmm.android.presentation.components.RecipeImage
 import com.example.food2forkkmm.domain.model.Recipe
 
@@ -26,11 +27,14 @@ fun RecipeCard(
                 start = 8.dp,
                 end = 8.dp
             )
+            .height(RECIPE_IMAGE_HEIGHT.dp)
             .fillMaxWidth()
             .clickable(onClick = onClick),
         elevation = 8.dp
     ) {
-        Column() {
+        Column(
+            modifier = Modifier.height(RECIPE_IMAGE_HEIGHT.dp)
+        ) {
 
             RecipeImage(url = recipe.featuredImage,
                 contentDescription = recipe.title)
@@ -38,6 +42,7 @@ fun RecipeCard(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .height(RECIPE_IMAGE_HEIGHT.dp)
                     .padding(top = 12.dp, bottom = 12.dp, start = 8.dp, end = 8.dp)
             ) {
 

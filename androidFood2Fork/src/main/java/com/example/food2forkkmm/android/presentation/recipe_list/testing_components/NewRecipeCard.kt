@@ -36,6 +36,7 @@ fun NewRecipeCard(
                 end = 8.dp
             )
             .fillMaxWidth()
+            .height(RECIPE_IMAGE_HEIGHT.dp)
             .border(
                 width = 0.4.dp,
                 color = MaterialTheme.colors.onSecondary,

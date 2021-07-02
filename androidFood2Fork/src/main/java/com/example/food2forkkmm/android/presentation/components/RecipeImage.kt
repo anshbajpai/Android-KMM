@@ -41,7 +41,8 @@ fun RecipeImage(
         }
         is ImageLoadState.Loading -> {
             Box(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .height(RECIPE_IMAGE_HEIGHT.dp),
             ){
 
