@@ -64,8 +64,10 @@ fun NewRecipeCard(
                       color = Color.Black
                   )
                   
-                  Spacer(modifier = Modifier.height(20.dp))
-                  Row {
+                  //Spacer(modifier = Modifier.height(20.dp))
+                  Row(
+                      verticalAlignment = Alignment.Bottom
+                  ) {
                       Icon(
                           Icons.Filled.Star,
                           contentDescription = "Localized description",

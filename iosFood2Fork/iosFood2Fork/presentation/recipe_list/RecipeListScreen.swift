@@ -35,6 +35,8 @@ struct RecipeListScreen: View {
     }
     
     var body: some View {
+        
+        SearchAppBar()
         List{
             ForEach(
                 viewModel.state.recipes, id: \.self.id

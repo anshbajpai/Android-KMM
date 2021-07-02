@@ -42,7 +42,7 @@ fun SearchAppBar(
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center
             ) {
-                TextField(
+                OutlinedTextField(
                     modifier = Modifier
                         .fillMaxWidth(.9f)
                         .padding(bottom = 5.dp)

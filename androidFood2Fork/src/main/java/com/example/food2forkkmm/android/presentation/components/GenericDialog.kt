@@ -30,7 +30,7 @@ fun GenericDialog(
         title = {
             Text(
                 text = title,
-                style = MaterialTheme.typography.h3
+                style = MaterialTheme.typography.h2
             )
         },
         text = {
