@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,9 @@
 		6A64DA9C268DD72C0000B3A8 /* RecipeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A64DA9B268DD72C0000B3A8 /* RecipeListViewModel.swift */; };
 		6A7A5947268ED97F002F4956 /* SearchAppBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A5946268ED97F002F4956 /* SearchAppBar.swift */; };
 		6A7A5949268EE5D4002F4956 /* FoodCategoryChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A5948268EE5D4002F4956 /* FoodCategoryChip.swift */; };
+		6A7A594B268F3B18002F4956 /* RecipeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A594A268F3B18002F4956 /* RecipeCard.swift */; };
+		6A7A594E268F55DF002F4956 /* Shimmer in Frameworks */ = {isa = PBXBuildFile; productRef = 6A7A594D268F55DF002F4956 /* Shimmer */; };
+		6A7A5951268F6184002F4956 /* ShimmerElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7A5950268F6184002F4956 /* ShimmerElement.swift */; };
 		9E5E7C96198C4903DA3C5BA9 /* Pods_iosFood2Fork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F4CB7007B0004B82E0C62A /* Pods_iosFood2Fork.framework */; };
 /* End PBXBuildFile section */
 
@@ -24,6 +27,8 @@
 		6A64DA9B268DD72C0000B3A8 /* RecipeListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListViewModel.swift; sourceTree = "<group>"; };
 		6A7A5946268ED97F002F4956 /* SearchAppBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAppBar.swift; sourceTree = "<group>"; };
 		6A7A5948268EE5D4002F4956 /* FoodCategoryChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCategoryChip.swift; sourceTree = "<group>"; };
+		6A7A594A268F3B18002F4956 /* RecipeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCard.swift; sourceTree = "<group>"; };
+		6A7A5950268F6184002F4956 /* ShimmerElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerElement.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosFood2Fork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosFood2Fork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -33,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A7A594E268F55DF002F4956 /* Shimmer in Frameworks */,
 				9E5E7C96198C4903DA3C5BA9 /* Pods_iosFood2Fork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,6 +69,8 @@
 			children = (
 				6A7A5946268ED97F002F4956 /* SearchAppBar.swift */,
 				6A7A5948268EE5D4002F4956 /* FoodCategoryChip.swift */,
+				6A7A594A268F3B18002F4956 /* RecipeCard.swift */,
+				6A7A5950268F6184002F4956 /* ShimmerElement.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -123,12 +131,16 @@
 				7555FF77242A565900829871 /* Sources */,
 				7555FF79242A565900829871 /* Resources */,
 				D77EB558657055B03BB53C7C /* Frameworks */,
+				C346BF0F747A029E15B22005 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = iosFood2Fork;
+			packageProductDependencies = (
+				6A7A594D268F55DF002F4956 /* Shimmer */,
+			);
 			productName = iosFood2Fork;
 			productReference = 7555FF7B242A565900829871 /* iosFood2Fork.app */;
 			productType = "com.apple.product-type.application";
@@ -157,6 +169,9 @@
 				Base,
 			);
 			mainGroup = 7555FF72242A565900829871;
+			packageReferences = (
+				6A7A594C268F55DF002F4956 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */,
+			);
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -177,6 +192,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		C346BF0F747A029E15B22005 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosFood2Fork/Pods-iosFood2Fork-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iosFood2Fork/Pods-iosFood2Fork-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iosFood2Fork/Pods-iosFood2Fork-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		DDDC1F1ED0BBD1B014ABB71D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -208,9 +240,11 @@
 			files = (
 				6A64DA9A268DBC560000B3A8 /* RecipeListScreen.swift in Sources */,
 				6A7A5947268ED97F002F4956 /* SearchAppBar.swift in Sources */,
+				6A7A5951268F6184002F4956 /* ShimmerElement.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				6A7A5949268EE5D4002F4956 /* FoodCategoryChip.swift in Sources */,
 				6A64DA9C268DD72C0000B3A8 /* RecipeListViewModel.swift in Sources */,
+				6A7A594B268F3B18002F4956 /* RecipeCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +443,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6A7A594C268F55DF002F4956 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markiv/SwiftUI-Shimmer.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6A7A594D268F55DF002F4956 /* Shimmer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6A7A594C268F55DF002F4956 /* XCRemoteSwiftPackageReference "SwiftUI-Shimmer" */;
+			productName = Shimmer;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7555FF73242A565900829871 /* Project object */;
 }

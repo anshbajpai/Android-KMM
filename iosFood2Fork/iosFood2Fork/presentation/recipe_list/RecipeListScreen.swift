@@ -8,6 +8,7 @@
 
 import SwiftUI
 import shared
+import Shimmer
 
 struct RecipeListScreen: View {
     
@@ -42,22 +43,41 @@ struct RecipeListScreen: View {
         
         SearchAppBar(
             query: viewModel.state.query,
+            selectedCategory: viewModel.state.selectedCategory,
             foodCategories: foodCategories,
             onTriggerEvent: {event in
                 viewModel.onTriggerEvent(stateEvent: event)
             }
         )
-        List{
-            ForEach(
-                viewModel.state.recipes, id: \.self.id
-            ){ recipe in
-                Text(recipe.title)
-                    .onAppear(perform: {
-                        if(viewModel.shouldQueryNextPage(recipe: recipe)){
-                            viewModel.onTriggerEvent(stateEvent: RecipeListEvents.NextPage())
-                       }
-                    }
-                )
+        if(viewModel.state.isLoading && viewModel.state.recipes.isEmpty){
+            // Loading
+            List{
+                ShimmerElement()
+                ShimmerElement()
+                ShimmerElement()
+                ShimmerElement()
+                ShimmerElement()
+            }
+        }
+        else if(viewModel.state.recipes.isEmpty){
+            // Nothing
+        }
+        else{
+            List{
+                ForEach(
+                    viewModel.state.recipes, id: \.self.id
+                ){ recipe in
+                    RecipeCard(recipe: recipe)
+                        .onAppear(perform: {
+                            if(viewModel.shouldQueryNextPage(recipe: recipe)){
+                                viewModel.onTriggerEvent(stateEvent: RecipeListEvents.NextPage())
+                           }
+                        }
+                    )
+                        .listRowInsets(EdgeInsets())
+                        .padding(.init(top: 10, leading: 6, bottom: 0, trailing: 6))
+                        .background(Color.white)
+                }
             }
         }
     }
