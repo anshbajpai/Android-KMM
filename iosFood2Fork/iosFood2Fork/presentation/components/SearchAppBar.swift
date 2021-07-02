@@ -11,7 +11,18 @@ import shared
 
 struct SearchAppBar: View {
     
-    @State var query: String = ""
+    @State var query: String
+    
+    private let onTriggerEvent: (RecipeListEvents) -> Void
+    
+    init(
+        query: String,
+        onTriggerEvent: @escaping (RecipeListEvents) -> Void
+    ) {
+        self.onTriggerEvent = onTriggerEvent
+        self._query = State(initialValue: query)
+    }
+    
     var body: some View {
         VStack{
             HStack{
@@ -20,11 +31,11 @@ struct SearchAppBar: View {
                     "Search...",
                     text: $query,
                     onCommit: {
-                        // Execute New Search
+                        onTriggerEvent(RecipeListEvents.NewSearch())
                     }
                 )
                 .onChange(of: query, perform: { value in
-                    // Update The Query
+                    onTriggerEvent(RecipeListEvents.OnUpdateQuery(query: value))
                 })
             }
             .padding(.bottom, 8)
@@ -36,8 +47,8 @@ struct SearchAppBar: View {
     }
 }
 
-struct SearchAppBar_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchAppBar()
-    }
-}
+//struct SearchAppBar_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SearchAppBar()
+//    }
+//}
