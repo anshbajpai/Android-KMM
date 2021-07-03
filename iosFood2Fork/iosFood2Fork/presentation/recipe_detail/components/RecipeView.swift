@@ -53,6 +53,7 @@ struct RecipeView: View {
                     
                     ForEach(recipe.ingredients as Array<String> , id: \.self){ ingredient in
                         Text(ingredient)
+                            .font(Font.custom("Avenir", size: 16))
                             .padding(.top, 4)
                     }
                 }

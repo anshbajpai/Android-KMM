@@ -18,6 +18,8 @@
 		6AB69F1B2690476C00231D0D /* RecipeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB69F1A2690476B00231D0D /* RecipeDetailViewModel.swift */; };
 		6AB69F1D2690498600231D0D /* RecipeDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB69F1C2690498600231D0D /* RecipeDetailScreen.swift */; };
 		6AB69F202690505300231D0D /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB69F1F2690505300231D0D /* RecipeView.swift */; };
+		6AB69F232690557300231D0D /* Courgette-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AB69F222690557300231D0D /* Courgette-Regular.ttf */; };
+		6AB69F252690566000231D0D /* Avenir.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 6AB69F242690566000231D0D /* Avenir.ttc */; };
 		9E5E7C96198C4903DA3C5BA9 /* Pods_iosFood2Fork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F4CB7007B0004B82E0C62A /* Pods_iosFood2Fork.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,8 @@
 		6AB69F1A2690476B00231D0D /* RecipeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewModel.swift; sourceTree = "<group>"; };
 		6AB69F1C2690498600231D0D /* RecipeDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailScreen.swift; sourceTree = "<group>"; };
 		6AB69F1F2690505300231D0D /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
+		6AB69F222690557300231D0D /* Courgette-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Courgette-Regular.ttf"; sourceTree = "<group>"; };
+		6AB69F242690566000231D0D /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avenir.ttc; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosFood2Fork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosFood2Fork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +104,15 @@
 			path = components;
 			sourceTree = "<group>";
 		};
+		6AB69F212690556400231D0D /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				6AB69F242690566000231D0D /* Avenir.ttc */,
+				6AB69F222690557300231D0D /* Courgette-Regular.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +134,7 @@
 		7555FF7D242A565900829871 /* iosFood2Fork */ = {
 			isa = PBXGroup;
 			children = (
+				6AB69F212690556400231D0D /* fonts */,
 				6A64DA97268DBC230000B3A8 /* presentation */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
@@ -211,6 +225,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AB69F252690566000231D0D /* Avenir.ttc in Resources */,
+				6AB69F232690557300231D0D /* Courgette-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

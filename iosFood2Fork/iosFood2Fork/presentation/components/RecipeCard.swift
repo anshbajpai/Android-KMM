@@ -39,14 +39,15 @@ struct RecipeCard: View {
                 alignment: .leading
             ) {
                 Text(recipe.title)
-                    .font(.body)
+                    .font(Font.custom("Courgette-Regular", size: 18))
                 
-                HStack{
+                HStack(alignment: .lastTextBaseline){
                     Image(systemName: "star.fill")
                         .imageScale(/*@START_MENU_TOKEN@*/.medium/*@END_MENU_TOKEN@*/)
                         .foregroundColor(.yellow)
                     
                     Text(String(recipe.rating))
+                        .font(Font.custom("Avenir", size: 16))
                 }
                 .padding(.top, 5)
                 
