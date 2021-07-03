@@ -41,17 +41,14 @@ struct RecipeListScreen: View {
     
     var body: some View {
         
-        SearchAppBar(
-            query: viewModel.state.query,
-            selectedCategory: viewModel.state.selectedCategory,
-            foodCategories: foodCategories,
-            onTriggerEvent: {event in
-                viewModel.onTriggerEvent(stateEvent: event)
-            }
-        )
         if(viewModel.state.isLoading && viewModel.state.recipes.isEmpty){
             // Loading
             List{
+                Rectangle()
+                    .fill(Color.gray)
+                    .opacity(0.5)
+                    .frame(width: .infinity, height: 10).shimmering()
+                    .cornerRadius(4.0)
                 ShimmerElement()
                 ShimmerElement()
                 ShimmerElement()
@@ -63,26 +60,46 @@ struct RecipeListScreen: View {
             // Nothing
         }
         else{
-            List{
-                ForEach(
-                    viewModel.state.recipes, id: \.self.id
-                ){ recipe in
-                    RecipeCard(recipe: recipe)
-                        .onAppear(perform: {
-                            if(viewModel.shouldQueryNextPage(recipe: recipe)){
-                                viewModel.onTriggerEvent(stateEvent: RecipeListEvents.NextPage())
-                           }
+            NavigationView{
+                ZStack{
+                    VStack{
+                        SearchAppBar(
+                            query: viewModel.state.query,
+                            selectedCategory: viewModel.state.selectedCategory,
+                            foodCategories: foodCategories,
+                            onTriggerEvent: { event in
+                                viewModel.onTriggerEvent(stateEvent: event)
+                            }
+                        )
+                        List {
+                            ForEach(viewModel.state.recipes, id: \.self.id){ recipe in
+                                ZStack{
+                                    RecipeCard(recipe: recipe)
+                                        .onAppear(perform: {
+                                            if viewModel.shouldQueryNextPage(recipe: recipe){
+                                                viewModel.onTriggerEvent(stateEvent: RecipeListEvents.NextPage())
+                                            }
+                                        })
+                                    NavigationLink(
+                                        destination: Text("\(recipe.title)")
+                                    ){
+                                        EmptyView()
+                                    }
+                                }
+                                .listRowInsets(EdgeInsets())
+                                .padding(.top, 10)
+                                .padding(.leading, 6)
+                                .padding(.trailing, 6)
+                            }
                         }
-                    )
-                        .listRowInsets(EdgeInsets())
-                        .padding(.init(top: 10, leading: 6, bottom: 0, trailing: 6))
-                        .background(Color.white)
+                        .listStyle(PlainListStyle())
+                    }
                 }
+                .navigationBarHidden(true)
             }
         }
     }
 }
-
 //struct RecipeListScreen_Previews: PreviewProvider {
 //    static var previews: some View {
 //        RecipeListScreen()
