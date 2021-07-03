@@ -20,6 +20,7 @@
 		6AB69F202690505300231D0D /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB69F1F2690505300231D0D /* RecipeView.swift */; };
 		6AB69F232690557300231D0D /* Courgette-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AB69F222690557300231D0D /* Courgette-Regular.ttf */; };
 		6AB69F252690566000231D0D /* Avenir.ttc in Resources */ = {isa = PBXBuildFile; fileRef = 6AB69F242690566000231D0D /* Avenir.ttc */; };
+		6AB69F2726905BD500231D0D /* GenericMessageInfoAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB69F2626905BD500231D0D /* GenericMessageInfoAlert.swift */; };
 		9E5E7C96198C4903DA3C5BA9 /* Pods_iosFood2Fork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F4CB7007B0004B82E0C62A /* Pods_iosFood2Fork.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		6AB69F1F2690505300231D0D /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		6AB69F222690557300231D0D /* Courgette-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Courgette-Regular.ttf"; sourceTree = "<group>"; };
 		6AB69F242690566000231D0D /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avenir.ttc; sourceTree = "<group>"; };
+		6AB69F2626905BD500231D0D /* GenericMessageInfoAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericMessageInfoAlert.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* iosFood2Fork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosFood2Fork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +84,7 @@
 				6A7A5948268EE5D4002F4956 /* FoodCategoryChip.swift */,
 				6A7A594A268F3B18002F4956 /* RecipeCard.swift */,
 				6A7A5950268F6184002F4956 /* ShimmerElement.swift */,
+				6AB69F2626905BD500231D0D /* GenericMessageInfoAlert.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				6A7A5947268ED97F002F4956 /* SearchAppBar.swift in Sources */,
 				6AB69F1D2690498600231D0D /* RecipeDetailScreen.swift in Sources */,
 				6A7A5951268F6184002F4956 /* ShimmerElement.swift in Sources */,
+				6AB69F2726905BD500231D0D /* GenericMessageInfoAlert.swift in Sources */,
 				6AB69F202690505300231D0D /* RecipeView.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				6A7A5949268EE5D4002F4956 /* FoodCategoryChip.swift in Sources */,
@@ -417,6 +421,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SX2XX63LN3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosFood2Fork/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -431,7 +436,7 @@
 					"\"shared\"",
 					"-lsqlite3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosFood2Fork;
+				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.ansh.iosFood2Fork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -444,6 +449,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SX2XX63LN3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosFood2Fork/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -458,7 +464,7 @@
 					"\"shared\"",
 					"-lsqlite3",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosFood2Fork;
+				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.ansh.iosFood2Fork;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

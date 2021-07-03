@@ -23,6 +23,9 @@ class GetRecipe(
 
         try{
 
+            if(recipeId == 1 || recipeId == 5){
+                throw Exception("Invalid Recipe Id: ${recipeId}")
+            }
             kotlinx.coroutines.delay(2000)
             val recipe = recipeCache.get(recipeId)
 

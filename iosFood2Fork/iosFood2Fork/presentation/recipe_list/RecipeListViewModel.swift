@@ -18,6 +18,8 @@ class RecipeListViewModel: ObservableObject {
     //state
     @Published var state: RecipeListState = RecipeListState()
     
+    @Published var showDialog: Bool = false
+    
     init(
         searchRecipes: SearchRecipes,
         foodCategoryUtil: FoodCategoryUtil
@@ -44,6 +46,7 @@ class RecipeListViewModel: ObservableObject {
             bottomRecipe: bottomRecipe ?? currentState.bottomRecipe,
             queue: queue ?? currentState.queue
         )
+        shouldShowDialog()
     }
     
     func onTriggerEvent(stateEvent: RecipeListEvents){
@@ -61,7 +64,7 @@ class RecipeListViewModel: ObservableObject {
                 foodCategory: (stateEvent as! RecipeListEvents.OnSelectCategory).category
             )
         case is RecipeListEvents.OnRemoveHeadMessageFromQueue:
-            doNothing()
+            removeHeadFromQueue()
         default:
             doNothing()
 }
@@ -112,7 +115,7 @@ class RecipeListViewModel: ObservableObject {
                 }
             )
         }catch{
-            
+            print("\(error)")
         }
     }
     
@@ -192,8 +195,45 @@ class RecipeListViewModel: ObservableObject {
     
     private func handleMessageByUIComponentType(_ message: GenericMessageInfo){
         // TODO("append to queue or 'None'")
+        switch message.uiComponentType {
+          case UIComponentType.Dialog():
+            appendToQueue(message: message)
+          case UIComponentType.None():
+            print("\(message.description)")
+          default:
+            doNothing()
+        }
     }
     
+    
+    private func shouldShowDialog(){
+        let currentState = self.state.copy() as! RecipeListState
+        showDialog = currentState.queue.items.count > 0
+    }
+    
+    private func appendToQueue(
+        message: GenericMessageInfo
+    ){
+        let currentState = self.state.copy() as! RecipeListState
+        let queue = currentState.queue
+        let queueUtil = GenericMessageInfoQueueUtil()
+        if !queueUtil.doesMessageAlreadyExistInQueue(queue: queue, messageInfo: message){
+            queue.add(element: message)
+            updateState(queue: queue)
+        }
+    }
+    
+    func removeHeadFromQueue(){
+        let currentState = self.state.copy() as! RecipeListState
+        let queue = currentState.queue
+        do {
+            try queue.remove()
+            updateState(queue: queue)
+        }
+        catch {
+            print("\(error)")
+        }
+    }
     
     
     func doNothing(){

@@ -34,12 +34,12 @@ struct RecipeDetailScreen: View {
     }
     
     var body: some View {
-        if viewModel.state.recipe != nil {
             RecipeView(
-                recipe: viewModel.state.recipe!, dateUtil: datetimeUtil
+                recipe: viewModel.state.recipe,
+                dateUtil: datetimeUtil,
+                message: viewModel.state.queue.peek(),
+                onTriggerEvent: viewModel.onTriggerEvent
+                
             )
-        }else {
-            Text("Unable to load details")
-        }
     }
 }

@@ -41,25 +41,21 @@ struct RecipeListScreen: View {
     
     var body: some View {
         
-        if(viewModel.state.isLoading && viewModel.state.recipes.isEmpty){
-            // Loading
-            List{
-                Rectangle()
-                    .fill(Color.gray)
-                    .opacity(0.5)
-                    .frame(width: .infinity, height: 10).shimmering()
-                    .cornerRadius(4.0)
-                ShimmerElement()
-                ShimmerElement()
-                ShimmerElement()
-                ShimmerElement()
-                ShimmerElement()
-            }
-        }
-        else if(viewModel.state.recipes.isEmpty){
-            // Nothing
-        }
-        else{
+//        if(viewModel.state.isLoading && viewModel.state.recipes.isEmpty){
+//            // Loading
+//            List{
+//                Rectangle()
+//                    .fill(Color.gray)
+//                    .opacity(0.5)
+//                    .frame(width: .infinity, height: 10).shimmering()
+//                    .cornerRadius(4.0)
+//                ShimmerElement()
+//                ShimmerElement()
+//                ShimmerElement()
+//                ShimmerElement()
+//                ShimmerElement()
+//            }
+//        }
             NavigationView{
                 ZStack{
                     VStack{
@@ -97,10 +93,22 @@ struct RecipeListScreen: View {
                         }
                         .listStyle(PlainListStyle())
                     }
+                   if viewModel.state.isLoading {
+                       ProgressView("Searching recipes...")
+                   }
                 }
                 .navigationBarHidden(true)
+                .alert(
+                    isPresented: $viewModel.showDialog,
+                    content: {
+                        let first = viewModel.state.queue.peek()!
+                        return GenericMessageInfoAlert().build(
+                            message: first,
+                            onRemoveHeadMessage: {
+                                viewModel.onTriggerEvent(stateEvent: RecipeListEvents.OnRemoveHeadMessageFromQueue())
+                            })
+                    } )
             }
-        }
     }
 }
 //struct RecipeListScreen_Previews: PreviewProvider {
